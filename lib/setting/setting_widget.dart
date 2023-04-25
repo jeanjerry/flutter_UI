@@ -500,6 +500,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                                           ),
                                     ),
                                   ),
+                                  if(FFAppState().timepicker!=null)
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         120.0, 0.0, 0.0, 0.0),
@@ -1185,7 +1186,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('home');
+                              context.pushNamed('test');
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,

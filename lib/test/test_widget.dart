@@ -5,7 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'test_model.dart';
 export 'test_model.dart';
-
+import 'package:http/http.dart' as http;
+import '/main.dart';
+import 'dart:convert';
 class TestWidget extends StatefulWidget {
   const TestWidget({Key? key}) : super(key: key);
 
@@ -18,6 +20,21 @@ class _TestWidgetState extends State<TestWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
+  var  gettime= DateTime.now();  //獲取按下去的時間
+  var  gettime1;  //轉換輸出型態月日年轉年月日
+  trainok()async{
+    var url = Uri.parse(ip+"train_upok.php");
+    final responce = await http.post(url,body: {
+      "account" : FFAppState().accountnumber,
+      "degree":"初階",
+      "parts":"上肢",
+      "time": gettime1.toString(),
+      "action": FFAppState().trainup,//動作
+      "times": "1",//動作
+    });
+
+  }
+
 
   @override
   void initState() {
@@ -36,7 +53,7 @@ class _TestWidgetState extends State<TestWidget> {
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
-
+    gettime1=dateTimeFormat('yyyy-M-d', gettime);
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
@@ -121,7 +138,7 @@ class _TestWidgetState extends State<TestWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context.pushNamed('trainupperbody1');
+                                      trainok();
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
