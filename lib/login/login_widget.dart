@@ -552,6 +552,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           getData();
+                          FFAppState().accountnumber = _model.textController1.text;
+                          FFAppState().password = _model.textController2.text;
                         },
                         text: '登入',
                         options: FFButtonOptions(
