@@ -39,7 +39,7 @@ class _TrainupperbodyWidgetState extends State<TrainupperbodyWidget> {
     }
   }
   lock2()async{
-    var url = Uri.parse("http://192.168.56.1/lock.php");
+    var url = Uri.parse(ip+"lock.php");
     final responce = await http.post(url,body: {
       "pid" : FFAppState().accountnumber,
       //"pid" : "airehab_01",
